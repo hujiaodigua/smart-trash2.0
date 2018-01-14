@@ -1,0 +1,2 @@
+
+int JudegTrash(float t);
