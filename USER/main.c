@@ -270,6 +270,7 @@ void key_task(void *pvParameters)
 }
 
 //task1任务函数--判断是否有垃圾
+//判断是否有垃圾考虑设置成手动的，称重检测或者超声波检测其实都不如手动的方便
 void task1_task(void *pvParameters)
 {
 	u8 task1_num=0;
