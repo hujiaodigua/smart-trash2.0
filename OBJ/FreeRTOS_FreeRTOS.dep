@@ -1,5 +1,5 @@
 Dependencies for Project 'FreeRTOS', Target 'FreeRTOS': (DO NOT MODIFY !)
-F (.\main.c)(0x5A4C90D4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5A5B1F38)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -362,7 +362,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\KEY\key.h)(0x532ADF68)
 I (..\SYSTEM\delay\delay.h)(0x583D2EFB)
-F (..\HARDWARE\SIM800C\sim800c.c)(0x5A59A4A4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\sim800c.o --omf_browse ..\obj\sim800c.crf --depend ..\obj\sim800c.d)
+F (..\HARDWARE\SIM800C\sim800c.c)(0x5A5D6D3F)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\sim800c.o --omf_browse ..\obj\sim800c.crf --depend ..\obj\sim800c.d)
 I (..\HARDWARE\SIM800C\sim800c.h)(0x5A3A59B5)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
@@ -1111,7 +1111,7 @@ I (..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x573F3A17)
 I (..\FreeRTOS\include\mpu_wrappers.h)(0x573F3A16)
 I (..\FreeRTOS\include\task.h)(0x573F3A16)
 I (..\FreeRTOS\include\list.h)(0x573F3A16)
-F (..\README.TXT)(0x583D3FB4)()
+F (..\README.TXT)(0x5A5B1BD9)()
 F (..\MALLOC\malloc.c)(0x5325AC92)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\malloc.o --omf_browse ..\obj\malloc.crf --depend ..\obj\malloc.d)
 I (..\MALLOC\malloc.h)(0x53C73C74)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
