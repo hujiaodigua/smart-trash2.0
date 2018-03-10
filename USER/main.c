@@ -11,7 +11,7 @@
 
 //功能文件
 #include "usart2.h" 
-#include "hx711.h"
+#include "hx711.h" //称重
 #include "motor.h"
 #include "sim800c.h"
 #include "jansson.h"	//使用该库时Options for target 中在target下勾选Use MicroLIB
@@ -92,6 +92,8 @@ int main(void)
 	USART2_Init(115200);	         //初始化串口2--串口2连接STM800C
 	
 	ADInit();
+	ADInit_Left();
+	ADInit_Right();
 	
 //    POINT_COLOR = RED;
 //	LCD_ShowString(30,10,200,16,16,"ATK STM32F103/407");	
@@ -358,7 +360,8 @@ void task2_task(void *pvParameters)
 	
 	for(i=0;i<10;i++)
 	{
-		ad_val0 = HX711_Read();
+		
+		ad_val0 = HX711_Read() + HX711_Read_Left() + HX711_Read_Right();
 		delay_ms(5);
 	}
 		
@@ -395,7 +398,7 @@ void task2_task(void *pvParameters)
 		{
 			sim_touchuan_recv(1);
 		}
-		ad_val1 = HX711_Read();
+		ad_val1 = HX711_Read() + HX711_Read_Left() + HX711_Read_Right();
 		
 //		if(ABS(ad_val1-ad_val0) < 800) //自动标定0
 //		{
