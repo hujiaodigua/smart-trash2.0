@@ -444,6 +444,16 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\USART2\usart2.c</FilePath>
             </File>
+            <File>
+              <FileName>hx711_left.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\HX711\hx711_left.c</FilePath>
+            </File>
+            <File>
+              <FileName>hx711_right.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\HX711\hx711_right.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
