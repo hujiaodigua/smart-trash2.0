@@ -60,3 +60,16 @@ u8 KEY_Scan(u8 mode)
 	}else if(KEY0==1&&KEY1==1&&WK_UP==0)key_up=1; 	     
 	return 0;// 无按键按下
 }
+
+u8 KEY_Scan_WKUP(u8 mode)
+{
+	static u8 key_up = 1;//按键按松开标志
+	if(mode)key_up = 1;  //支持连按		  
+	if(key_up&&WK_UP == 1)
+	{ 
+		delay_ms(10);
+		key_up = 0;
+		if(WK_UP == 1){return WKUP_PRES;}
+	}
+	return 0;
+}

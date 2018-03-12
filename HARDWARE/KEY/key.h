@@ -30,5 +30,6 @@
 #define WKUP_PRES	3		//WK_UP  
 
 void KEY_Init(void);//IO初始化
-u8 KEY_Scan(u8 mode);  	//按键扫描函数					    
+u8 KEY_Scan(u8 mode);  	//按键扫描函数	
+u8 KEY_Scan_WKUP(u8 mode);		//扫面WKUP一个按键函数
 #endif
