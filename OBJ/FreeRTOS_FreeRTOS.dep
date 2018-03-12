@@ -1,5 +1,5 @@
 Dependencies for Project 'FreeRTOS', Target 'FreeRTOS': (DO NOT MODIFY !)
-F (.\main.c)(0x5AA621D2)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5AA645B5)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -37,7 +37,7 @@ I (..\HARDWARE\TIMER\timer.h)(0x583BB202)
 I (..\HARDWARE\LCD\lcd.h)(0x55CB1DBC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\HARDWARE\KEY\key.h)(0x5AA61C52)
-I (..\HARDWARE\EXTI\exti.h)(0x532AF1A5)
+I (..\HARDWARE\EXTI\exti.h)(0x5AA638F3)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
@@ -217,8 +217,8 @@ I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\LED\led.h)(0x532ACAF4)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5A2A4126)
-F (..\HARDWARE\EXTI\exti.c)(0x5A2D2AA6)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\exti.o --omf_browse ..\obj\exti.crf --depend ..\obj\exti.d)
-I (..\HARDWARE\EXTI\exti.h)(0x532AF1A5)
+F (..\HARDWARE\EXTI\exti.c)(0x5AA6418D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\exti.o --omf_browse ..\obj\exti.crf --depend ..\obj\exti.d)
+I (..\HARDWARE\EXTI\exti.h)(0x5AA638F3)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)

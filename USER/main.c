@@ -72,6 +72,8 @@ u8 send_trash_enable = 0;
 float Weight_Shiwu = 0;
 float Weight_Send = 0;
 
+extern u8 key_wakeup;
+
 ////LCD刷屏时使用的颜色
 //int lcd_discolor[14]={	WHITE, BLACK, BLUE,  BRED,      
 //						GRED,  GBLUE, RED,   MAGENTA,       	 
@@ -292,12 +294,13 @@ void task1_task(void *pvParameters)
 
 	while(1)
 	{	
-		if(KEY_Scan_WKUP(1) == 3)	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
+		if(key_wakeup == 1)	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
 		{
+			key_wakeup = 0;
 			//立即执行处理函数
 			if(Weight_Shiwu > 100) 	//真的有垃圾执行处理函数
 			{
-				vTaskDelay(1000);//等1秒确认放上的是垃圾 
+				//vTaskDelay(1000);//等1秒确认放上的是垃圾 
 				if(JudegTrash(Weight_Shiwu))
 				{
 					send_trash_enable = 1; //允许key里发送重量数据
@@ -326,7 +329,7 @@ void task1_task(void *pvParameters)
 				}
 			}
 		}
-		else //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
+		if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
 		{
 			vTaskDelay(14000);//等14s执行处理函数
 	    if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
