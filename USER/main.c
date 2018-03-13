@@ -15,6 +15,8 @@
 #include "motor.h"
 #include "sim800c.h"
 #include "jansson.h"	//使用该库时Options for target 中在target下勾选Use MicroLIB
+#include "wave.h"
+
 /************************************************
  ALIENTEK Mini STM32F103开发板 FreeRTOS实验4-3
  FreeRTOS任务挂起和恢复实验-库函数版本
@@ -96,6 +98,9 @@ int main(void)
 	ADInit();
 	ADInit_Left();
 	ADInit_Right();
+	
+	Timer_SRD_Init(5000,7199);
+	Wave_SRD_Init();
 	
 //    POINT_COLOR = RED;
 //	LCD_ShowString(30,10,200,16,16,"ATK STM32F103/407");	
@@ -401,6 +406,7 @@ void task2_task(void *pvParameters)
 		
 	while(1)
 	{
+			//Wave_SRD_Strat();
 //		root_down = json_loads(Downlink_data, JSON_DECODE_ANY, &error); 
 //		if(json_unpack(root_down,"{s:i, s:i, s:i}","downv", &value_down ,"info", &value_info, "check", &value_check) == 0) 														//Returns 0 on success and -1 on failure.
 //		{

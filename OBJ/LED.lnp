@@ -13,6 +13,7 @@
 "..\obj\usart2.o"
 "..\obj\hx711_left.o"
 "..\obj\hx711_right.o"
+"..\obj\wave.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\usart.o"

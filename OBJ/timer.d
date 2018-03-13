@@ -31,5 +31,3 @@
 ..\obj\timer.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\timer.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\timer.o: ..\HARDWARE\LED\led.h
-..\obj\timer.o: ..\SYSTEM\usart\usart.h
-..\obj\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

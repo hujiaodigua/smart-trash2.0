@@ -55,3 +55,4 @@
 ..\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src\jansson.h
 ..\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src\jansson_config.h
+..\obj\main.o: ..\HARDWARE\HC_SR04\wave.h
