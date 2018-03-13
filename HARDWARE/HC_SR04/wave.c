@@ -66,9 +66,9 @@ void EXTI2_IRQHandler(void)
 		
 		TIM_Cmd(TIM3,DISABLE);
 		
-		Distance=TIM_GetCounter(TIM3)*340/200.0;
+		Distance=TIM_GetCounter(TIM3);//*340/200.0;
 		
-		if(Distance>2 )
+		if(Distance>2 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
 		{
 			printf("Distance:%f cm\r\n",Distance);
 		}
@@ -82,7 +82,8 @@ void Wave_SRD_Strat(void)
 	GPIO_SetBits(GPIOB,Trig);   //将Trig设置为高电平
 	delay_us(20);               //持续大于10us触发，触发超声波模块工作
 	GPIO_ResetBits(GPIOB,Trig); 
-	
+	delay_us(20);
+	GPIO_SetBits(GPIOB,Trig); 
 }
 
 

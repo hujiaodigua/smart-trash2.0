@@ -406,7 +406,7 @@ void task2_task(void *pvParameters)
 		
 	while(1)
 	{
-			//Wave_SRD_Strat();
+			Wave_SRD_Strat();
 //		root_down = json_loads(Downlink_data, JSON_DECODE_ANY, &error); 
 //		if(json_unpack(root_down,"{s:i, s:i, s:i}","downv", &value_down ,"info", &value_info, "check", &value_check) == 0) 														//Returns 0 on success and -1 on failure.
 //		{
