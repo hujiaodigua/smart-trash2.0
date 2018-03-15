@@ -5,6 +5,7 @@
 #include "usart.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "motor.h"
 
 #include "hx711.h"
 //////////////////////////////////////////////////////////////////////////////////	 
@@ -21,6 +22,10 @@
 ////////////////////////////////////////////////////////////////////////////////// 	  
  
 u8 key_wakeup = 0; 
+ 
+extern u8 send_trash_enable; 
+extern float Weight_Shiwu;
+extern float Weight_Send; 
  
 //外部中断初始化函数
 void EXTIX_Init(void)
@@ -140,7 +145,26 @@ void EXTI0_IRQHandler(void)
 		printf("垃圾投放完毕");
 		key_wakeup = 1;
 	}
-		EXTI_ClearITPendingBit(EXTI_Line0);    //清除LINE0上的中断标志位  
+		EXTI_ClearITPendingBit(EXTI_Line0);    //清除LINE0上的中断标志位 
+
+	if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
+		{
+			//立即执行处理函数
+			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
+			{
+				key_wakeup = 0;
+				if(JudegTrash(Weight_Shiwu))
+				{
+					send_trash_enable = 1; //允许key里发送重量数据
+					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
+				
+					printf("挂起任务1的运行!\r\n");
+					printf("Weight_Shiwu:%f\r\n",Weight_Send);
+					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
+					Weight_Shiwu = 0;
+				}
+			}
+		}
 }
 
 

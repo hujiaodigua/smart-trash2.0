@@ -13,10 +13,6 @@
 
 float Distance;
 
-extern u8 send_trash_enable; 
-extern float Weight_Shiwu;
-extern float Weight_Send;
-
 void Wave_SRD_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitSture;

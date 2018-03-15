@@ -45,4 +45,5 @@
 ..\obj\exti.o: ..\FreeRTOS\include\mpu_wrappers.h
 ..\obj\exti.o: ..\FreeRTOS\include\task.h
 ..\obj\exti.o: ..\FreeRTOS\include\list.h
+..\obj\exti.o: ..\HARDWARE\Motor\motor.h
 ..\obj\exti.o: ..\HARDWARE\HX711\hx711.h

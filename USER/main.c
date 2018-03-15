@@ -301,52 +301,53 @@ void task1_task(void *pvParameters)
 	{	
 		if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
 		{
-			//立即执行处理函数
-			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
-			{
-				key_wakeup = 0;
-				//vTaskDelay(1000);//等1秒确认放上的是垃圾 
-				if(JudegTrash(Weight_Shiwu))
-				{
-					send_trash_enable = 1; //允许key里发送重量数据
-					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
-	//			sprintf((char*)Weight_Trash,"%f",Weight_Shiwu);
-	//			sim800c_send_cmd(Weight_Trash,Weight_Trash,100);
-
-	// 关于发送json的如下代码，当执行json_dumps函数后，将引起某个机智然后挂起所有任务，无论json_dumps函数放在哪里，只要被执行
-	// 但是放到优先级为1的key任务里却可以执行			
-	//			root = json_pack("{sisisisisisisi}", 	//startup_stm32f10x_hd.s中默认的Heap_Size = 0x200 只有512B，改为0xc00 即3KB即可
-	//																		 "upv",    1,
-	//																		 "type",   0,
-	//																		 "uuid",   12,
-	//																		 "major", 12,
-	//																		 "check", 32,
-	//																		 "info",	 1,
-	//																		 "xx",		 (uint32_t)Weight_Shiwu  );
-	//			Uplink_data = json_dumps(root, JSON_ENCODE_ANY);
-	//			printf("out:%s\r\n", Uplink_data);
-	//			free(root);free(Uplink_data);
-				
-					printf("挂起任务1的运行!\r\n");
-					printf("Weight_Shiwu:%f\r\n",Weight_Send);
-					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
-					Weight_Shiwu = 0;
-				}
-			}
-//			if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
+			
+//			//立即执行处理函数
+//			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
 //			{
-//				vTaskDelay(14000);//等14s执行处理函数
-//					vTaskDelay(1000);//等1秒确认放上的是垃圾 
-//					if(JudegTrash(Weight_Shiwu))
-//					{
-//						send_trash_enable = 1; //允许key里发送重量数据
-//						Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
-//						printf("挂起任务1的运行!\r\n");
-//						printf("Weight_Shiwu:%f\r\n",Weight_Send);
-//						vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
-//						Weight_Shiwu = 0;
-//					}
+//				key_wakeup = 0;
+//				//vTaskDelay(1000);//等1秒确认放上的是垃圾 
+//				if(JudegTrash(Weight_Shiwu))
+//				{
+//					send_trash_enable = 1; //允许key里发送重量数据
+//					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
+//	//			sprintf((char*)Weight_Trash,"%f",Weight_Shiwu);
+//	//			sim800c_send_cmd(Weight_Trash,Weight_Trash,100);
+
+//	// 关于发送json的如下代码，当执行json_dumps函数后，将引起某个机智然后挂起所有任务，无论json_dumps函数放在哪里，只要被执行
+//	// 但是放到优先级为1的key任务里却可以执行			
+//	//			root = json_pack("{sisisisisisisi}", 	//startup_stm32f10x_hd.s中默认的Heap_Size = 0x200 只有512B，改为0xc00 即3KB即可
+//	//																		 "upv",    1,
+//	//																		 "type",   0,
+//	//																		 "uuid",   12,
+//	//																		 "major", 12,
+//	//																		 "check", 32,
+//	//																		 "info",	 1,
+//	//																		 "xx",		 (uint32_t)Weight_Shiwu  );
+//	//			Uplink_data = json_dumps(root, JSON_ENCODE_ANY);
+//	//			printf("out:%s\r\n", Uplink_data);
+//	//			free(root);free(Uplink_data);
+//				
+//					printf("挂起任务1的运行!\r\n");
+//					printf("Weight_Shiwu:%f\r\n",Weight_Send);
+//					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
+//					Weight_Shiwu = 0;
+//				}
 //			}
+			if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
+			{
+				vTaskDelay(10000);//等10s执行处理函数
+					vTaskDelay(1000);//等1秒确认放上的是垃圾 
+					if(JudegTrash(Weight_Shiwu))
+					{
+						send_trash_enable = 1; //允许key里发送重量数据
+						Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
+						printf("挂起任务1的运行!\r\n");
+						printf("Weight_Shiwu:%f\r\n",Weight_Send);
+						vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
+						Weight_Shiwu = 0;
+					}
+			}
 		}
 		
 //		else
