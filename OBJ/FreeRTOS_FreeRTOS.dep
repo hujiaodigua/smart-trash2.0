@@ -1,5 +1,5 @@
 Dependencies for Project 'FreeRTOS', Target 'FreeRTOS': (DO NOT MODIFY !)
-F (.\main.c)(0x5AA9F3F7)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC -I ..\HARDWARE\HC_SR04-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5AA9F48D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC -I ..\HARDWARE\HC_SR04-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -40,7 +40,7 @@ I (..\HARDWARE\KEY\key.h)(0x5AA61C52)
 I (..\HARDWARE\EXTI\exti.h)(0x5AA638F3)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
 I (..\FreeRTOS\include\portable.h)(0x573F3A16)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x573F3A16)
@@ -216,7 +216,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x504F415E)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\LED\led.h)(0x532ACAF4)
-F (..\HARDWARE\EXTI\exti.c)(0x5AA9F406)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC -I ..\HARDWARE\HC_SR04-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\exti.o --omf_browse ..\obj\exti.crf --depend ..\obj\exti.d)
+F (..\HARDWARE\EXTI\exti.c)(0x5AA9F6D7)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\HARDWARE\LED -I ..\HARDWARE\LCD -I ..\HARDWARE\TIMER -I ..\HARDWARE\EXTI -I ..\HARDWARE\KEY -I ..\HARDWARE\HX711 -I ..\HARDWARE\Motor -I ..\HARDWARE\SIM800C -I ..\HARDWARE\USART2 -I ..\MALLOC -I ..\HARDWARE\HC_SR04-I"E:\FreeRTOS实验4-3 FreeRTOS任务挂起和恢复实验\USER\RTE"-IC:\Keil_v5\ARM\PACK\Keil\Jansson\1.0.0\src-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="521" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\exti.o --omf_browse ..\obj\exti.crf --depend ..\obj\exti.d)
 I (..\HARDWARE\EXTI\exti.h)(0x5AA638F3)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
@@ -254,7 +254,7 @@ I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5A2A4126)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
 I (..\FreeRTOS\include\portable.h)(0x573F3A16)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x573F3A16)
@@ -543,7 +543,7 @@ I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5A2A4126)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
 I (..\FreeRTOS\include\portable.h)(0x573F3A16)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x573F3A16)
@@ -584,7 +584,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5A2A4126)
 I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
@@ -658,7 +658,7 @@ I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5A2A4126)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
 I (..\FreeRTOS\include\portable.h)(0x573F3A16)
 I (..\FreeRTOS\include\deprecated_definitions.h)(0x573F3A16)
@@ -874,7 +874,7 @@ F (..\FreeRTOS\croutine.c)(0x573F3A16)(-c --cpu Cortex-M3 -D__MICROLIB -g -O2 --
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -918,7 +918,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -963,7 +963,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1006,7 +1006,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5A2A40CE)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1051,7 +1051,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5A2A40CE)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1096,7 +1096,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1140,7 +1140,7 @@ F (..\FreeRTOS\portable\RVDS\ARM_CM3\port.c)(0x573F3A17)(-c --cpu Cortex-M3 -D__
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -1183,7 +1183,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x574E3E26)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
-I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x583C0415)
+I (..\FreeRTOS\include\FreeRTOSConfig.h)(0x5AA9F6CE)
 I (..\SYSTEM\sys\sys.h)(0x583D2D90)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
