@@ -63,19 +63,19 @@ void EXTIX_Init(void)
 		
 	NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;			//使能按键所在的外部中断通道
   	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x06;//抢占优先级6 
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;		//子优先级0
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x02;		//子优先级0
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;				//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 
 		
 		
   NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;			//使能按键所在的外部中断通道
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//抢占优先级2， 
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					//子优先级1
+  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x06;	//抢占优先级2， 
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x03;					//子优先级1
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 
 		
   NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;			//使能按键所在的外部中断通道
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x05;	//抢占优先级5 
+  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x06;	//抢占优先级5 
   	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;					//子优先级1
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 		

@@ -13,6 +13,10 @@
 
 float Distance;
 
+extern u8 send_trash_enable; 
+extern float Weight_Shiwu;
+extern float Weight_Send;
+
 void Wave_SRD_Init(void)
 {
 	GPIO_InitTypeDef  GPIO_InitSture;
@@ -47,8 +51,8 @@ void Wave_SRD_Init(void)
 	//中断优先级管理
 	NVIC_InitSture.NVIC_IRQChannel=EXTI2_IRQn;
 	NVIC_InitSture.NVIC_IRQChannelCmd=ENABLE;
-	NVIC_InitSture.NVIC_IRQChannelPreemptionPriority=2;
-	NVIC_InitSture.NVIC_IRQChannelSubPriority=2;
+	NVIC_InitSture.NVIC_IRQChannelPreemptionPriority=0x06;
+	NVIC_InitSture.NVIC_IRQChannelSubPriority=0x04;
 	NVIC_Init(&NVIC_InitSture);	
 }
 
@@ -68,7 +72,7 @@ void EXTI2_IRQHandler(void)
 		
 		Distance=TIM_GetCounter(TIM3);//*340/200.0;
 		
-		if(Distance>2 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
+		if(Distance>0 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
 		{
 			printf("Distance:%f cm\r\n",Distance);
 		}

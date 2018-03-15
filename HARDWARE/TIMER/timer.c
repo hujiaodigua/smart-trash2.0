@@ -25,8 +25,8 @@ void Timer_SRD_Init(u16 arr,u16 psc)
 	//中断优先级管理
 	NVIC_InitSture.NVIC_IRQChannel=TIM3_IRQn;
 	NVIC_InitSture.NVIC_IRQChannelCmd=ENABLE;
-	NVIC_InitSture.NVIC_IRQChannelPreemptionPriority=0;
-	NVIC_InitSture.NVIC_IRQChannelSubPriority=3;
+	NVIC_InitSture.NVIC_IRQChannelPreemptionPriority=0x06;
+	NVIC_InitSture.NVIC_IRQChannelSubPriority=0x05;
 	NVIC_Init(&NVIC_InitSture);
 	
 	//TIM_Cmd(TIM3,ENABLE);

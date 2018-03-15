@@ -46,7 +46,7 @@ TaskHandle_t KeyTask_Handler;
 void key_task(void *pvParameters);
 
 //任务优先级
-#define TASK1_TASK_PRIO		3
+#define TASK1_TASK_PRIO		4
 //任务堆栈大小	
 #define TASK1_STK_SIZE 		128  
 //任务句柄
@@ -55,7 +55,7 @@ TaskHandle_t Task1Task_Handler;
 void task1_task(void *pvParameters);
 
 //任务优先级
-#define TASK2_TASK_PRIO		4
+#define TASK2_TASK_PRIO		3
 //任务堆栈大小	
 #define TASK2_STK_SIZE 		256
 //任务句柄
@@ -299,12 +299,12 @@ void task1_task(void *pvParameters)
 
 	while(1)
 	{	
-		if(key_wakeup == 1)	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
+		if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
 		{
-			key_wakeup = 0;
 			//立即执行处理函数
-			if(Weight_Shiwu > 100) 	//真的有垃圾执行处理函数
+			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
 			{
+				key_wakeup = 0;
 				//vTaskDelay(1000);//等1秒确认放上的是垃圾 
 				if(JudegTrash(Weight_Shiwu))
 				{
@@ -333,23 +333,20 @@ void task1_task(void *pvParameters)
 					Weight_Shiwu = 0;
 				}
 			}
-		}
-		if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
-		{
-			vTaskDelay(14000);//等14s执行处理函数
-	    if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
-			{
-				vTaskDelay(1000);//等1秒确认放上的是垃圾 
-				if(JudegTrash(Weight_Shiwu))
-				{
-					send_trash_enable = 1; //允许key里发送重量数据
-					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
-					printf("挂起任务1的运行!\r\n");
-					printf("Weight_Shiwu:%f\r\n",Weight_Send);
-					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
-					Weight_Shiwu = 0;
-				}
-			}
+//			if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
+//			{
+//				vTaskDelay(14000);//等14s执行处理函数
+//					vTaskDelay(1000);//等1秒确认放上的是垃圾 
+//					if(JudegTrash(Weight_Shiwu))
+//					{
+//						send_trash_enable = 1; //允许key里发送重量数据
+//						Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
+//						printf("挂起任务1的运行!\r\n");
+//						printf("Weight_Shiwu:%f\r\n",Weight_Send);
+//						vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
+//						Weight_Shiwu = 0;
+//					}
+//			}
 		}
 		
 //		else
@@ -366,7 +363,7 @@ void task1_task(void *pvParameters)
 //		printf("任务1已经执行：%d次\r\n",task1_num);
 //		LCD_Fill(6,131,114,313,lcd_discolor[task1_num%14]); //填充区域
 //		LCD_ShowxNum(86,111,task1_num,3,16,0x80);	//显示任务执行次数
-        vTaskDelay(100);                           //延时1秒
+        vTaskDelay(10);                           //延时0.01秒
 	}
 }
 
