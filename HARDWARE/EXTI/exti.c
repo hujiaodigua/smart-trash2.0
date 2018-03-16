@@ -21,7 +21,7 @@
 //All rights reserved	  
 ////////////////////////////////////////////////////////////////////////////////// 	  
  
-u8 key_wakeup = 0; 
+u8 key_wakeup = 0; 	//默认值0，投放按键按下1，需要挂起任务2
  
 extern u8 send_trash_enable; 
 extern float Weight_Shiwu;
@@ -127,6 +127,8 @@ void EXTI15_10_IRQHandler(void)
 		LED0 = 1;			  //减速电机停转
 		LED1 = 1;
 		
+		key_wakeup = 0;		//不一定非要挂起任务，让任务中的函数不执行也是可以的
+		printf("行程开关中key_wakeup值：%d\r\n",key_wakeup);
 		YieldRequired=xTaskResumeFromISR(Task1Task_Handler);//恢复任务2
 		printf("恢复任务1的运行!\r\n");
 		if(YieldRequired==pdTRUE)
@@ -139,32 +141,30 @@ void EXTI15_10_IRQHandler(void)
 
 void EXTI0_IRQHandler(void)
 {
-	delay_xms(100);   //消抖
-	if(WK_UP==1)			 
-	{
-		printf("垃圾投放完毕");
-		key_wakeup = 1;
-	}
-		EXTI_ClearITPendingBit(EXTI_Line0);    //清除LINE0上的中断标志位 
-
-	if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
+	if(Weight_Shiwu > 200)	//真的有垃圾执行处理函数
 		{
+			delay_xms(100);   //消抖
+			if(WK_UP==1)			 
+			{
+				printf("垃圾投放完毕");
+				key_wakeup = 1;
+				printf("投放按键中key_wakeup值：%d\r\n",key_wakeup);
+			}
 			//立即执行处理函数
 			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
 			{
-				key_wakeup = 0;
 				if(JudegTrash(Weight_Shiwu))
 				{
 					send_trash_enable = 1; //允许key里发送重量数据
 					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
 				
-					printf("挂起任务1的运行!\r\n");
 					printf("Weight_Shiwu:%f\r\n",Weight_Send);
-					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
+
 					Weight_Shiwu = 0;
 				}
 			}
 		}
+		EXTI_ClearITPendingBit(EXTI_Line0);    //清除LINE0上的中断标志位 
 }
 
 

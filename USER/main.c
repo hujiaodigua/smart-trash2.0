@@ -299,7 +299,7 @@ void task1_task(void *pvParameters)
 
 	while(1)
 	{	
-		if(Weight_Shiwu > 100)	//真的有垃圾执行处理函数
+		if(Weight_Shiwu > 200)	//真的有垃圾执行处理函数
 		{
 			
 //			//立即执行处理函数
@@ -336,6 +336,7 @@ void task1_task(void *pvParameters)
 //			}
 			if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
 			{
+				printf("任务函数1中key_wakeup值：%d\r\n",key_wakeup);
 				vTaskDelay(10000);//等10s执行处理函数
 					vTaskDelay(1000);//等1秒确认放上的是垃圾 
 					if(JudegTrash(Weight_Shiwu))
