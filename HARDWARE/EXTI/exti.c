@@ -141,10 +141,10 @@ void EXTI15_10_IRQHandler(void)
 
 void EXTI0_IRQHandler(void)
 {
-	if(Weight_Shiwu > 200)	//真的有垃圾执行处理函数
+	if(WK_UP==1)	//真的有垃圾执行处理函数
 		{
 			delay_xms(100);   //消抖
-			if(WK_UP==1)			 
+			if(Weight_Shiwu > 200)			 
 			{
 				printf("垃圾投放完毕");
 				key_wakeup = 1;
