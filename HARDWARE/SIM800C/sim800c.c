@@ -10,6 +10,8 @@
 #include "usart2.h" 
 #include "jansson.h"
 
+int gsm_disconnect_var = 0;	//gsm断开连接时此变量赋值为1
+
 //usmart支持部分 
 //将收到的AT指令应答数据返回给电脑串口
 //mode:0,不清零USART2_RX_STA;
@@ -50,7 +52,10 @@ void sim_touchuan_recv(u8 mode)
 				printf("recv ok\r\n");
 				root_down = json_loads(Downlink_data, JSON_DECODE_ANY, &error);
 			
-				if(!json_is_object(root_down)){
+				if(!json_is_object(root_down)){								//判断是否为json对象可以在sim800c透传模式下判断是否与服务器断开连接
+					LED0 = 1; 	//一旦发生连接断开的情况，要让电机停转，防止因为sim800c通信进程的死锁使中断失效，电机失控
+				  LED1 = 1;		//所以sim800c一旦与服务器断开之后就要尝试重新连接服务器，这是现在遗留的一个bug，一定要解决
+					gsm_disconnect_var = 1;
 					printf("error: root_down is not json object\r\n");
 					return ;
 				}else {

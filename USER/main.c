@@ -75,6 +75,7 @@ float Weight_Shiwu = 0;
 float Weight_Send = 0;
 
 extern u8 key_wakeup;
+extern int gsm_disconnect_var;
 
 ////LCD刷屏时使用的颜色
 //int lcd_discolor[14]={	WHITE, BLACK, BLUE,  BRED,      
@@ -168,7 +169,7 @@ void key_task(void *pvParameters)
 	//json
 //	char* str = "{\"downv\": 1,\"info\": 1,\"xx\": 12}";
 
-	
+	sim800c_boot_label:
 	while(sim800c_send_cmd("AT","OK",100))//检测是否应答AT指令 
 	{
 		printf("AT Falied\r\n");
@@ -208,6 +209,11 @@ void key_task(void *pvParameters)
 	
 	while(1)
 	{
+		if(gsm_disconnect_var == 1) 	//每次循环开始前检查这个变量
+		{
+			gsm_disconnect_var = 0;
+			goto sim800c_boot_label;	 	//gsm_disconnect_var初值为0，若变为1意味断开连接，则要跳转到sim800c的初始设置处重新开始该进程
+		}
 		task3_num++;	//任务1执行次数加1 注意task3_num3加到255的时候会清零
 		printf("任务3已经执行：%d次\r\n",task3_num);
 		vTaskDelay(2000); 
