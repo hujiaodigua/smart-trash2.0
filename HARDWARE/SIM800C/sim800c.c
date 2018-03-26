@@ -55,7 +55,9 @@ void sim_touchuan_recv(u8 mode)
 				if(!json_is_object(root_down)){								//判断是否为json对象可以在sim800c透传模式下判断是否与服务器断开连接
 					LED0 = 1; 	//一旦发生连接断开的情况，要让电机停转，防止因为sim800c通信进程的死锁使中断失效，电机失控
 				  LED1 = 1;		//所以sim800c一旦与服务器断开之后就要尝试重新连接服务器，这是现在遗留的一个bug，一定要解决
-					gsm_disconnect_var = 1;
+					//gsm_disconnect_var = 1;
+					__set_FAULTMASK(1); 	//	发生该错误软件复位系统
+					NVIC_SystemReset();
 					printf("error: root_down is not json object\r\n");
 					return ;
 				}else {

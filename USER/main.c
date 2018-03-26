@@ -168,8 +168,11 @@ void key_task(void *pvParameters)
 	
 	//json
 //	char* str = "{\"downv\": 1,\"info\": 1,\"xx\": 12}";
-
+	
 	sim800c_boot_label:
+	if(sim800c_send_cmd("+++","OK",200));	//+++清空缓存，如果得到返回值0：意味发送+++返回ok是退出透传模式
+	if(sim800c_send_cmd("+++","OK",200));	//+++清空缓存，如果得到返回值1：意味发送+++没有返回是清空sim卡缓存
+	
 	while(sim800c_send_cmd("AT","OK",100))//检测是否应答AT指令 
 	{
 		printf("AT Falied\r\n");
@@ -212,7 +215,7 @@ void key_task(void *pvParameters)
 		if(gsm_disconnect_var == 1) 	//每次循环开始前检查这个变量
 		{
 			gsm_disconnect_var = 0;
-			goto sim800c_boot_label;	 	//gsm_disconnect_var初值为0，若变为1意味断开连接，则要跳转到sim800c的初始设置处重新开始该进程
+			goto sim800c_boot_label;	 	//gsm_disconnect_var初值为0，若变为1意味断开连接，则要跳转到sim800c_boot_label设置处重新连接服务器
 		}
 		task3_num++;	//任务1执行次数加1 注意task3_num3加到255的时候会清零
 		printf("任务3已经执行：%d次\r\n",task3_num);
