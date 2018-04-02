@@ -11,7 +11,8 @@
 
 #define Echo GPIO_Pin_0
 
-float Distance;
+float Distance = 0;
+float Distance_s = 1;
 
 void Wave_SRD_Init(void)
 {
@@ -68,9 +69,14 @@ void EXTI2_IRQHandler(void)
 		
 		Distance=TIM_GetCounter(TIM3);//*340/200.0;
 		
-		if(Distance>0 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
+		if(Distance > 2 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
 		{
+			Distance_s = Distance;
 			printf("Distance:%f cm\r\n",Distance);
+		}
+		if(Distance <= 2)	//意味回波没有发生变化，距离不变
+		{
+			//printf("Distance:%f cm\r\n",Distance_s);
 		}
 			
 		EXTI_ClearITPendingBit(EXTI_Line2);

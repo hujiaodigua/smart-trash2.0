@@ -95,7 +95,7 @@ void EXTI9_5_IRQHandler(void)
 {	
 	//BaseType_t YieldRequired;	
 	delay_xms(20);   //消抖			 
-	if(KEY0==1)	
+	if(KEY0==0)	
 	{
 		
 			LED0 = 1; 	//先让减速电机停转

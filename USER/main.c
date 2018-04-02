@@ -189,6 +189,9 @@ void key_task(void *pvParameters)
 	{
 		printf("sim800c set ok\r\n");
 		send_enable = 1;				//发送标记变量置1，允许有垃圾时发送垃圾重量到服务器
+	}else
+	{
+		goto sim800c_boot_label;
 	}
 	
 	root_heartbeat = json_pack("{sisisisisisisi}", 	//startup_stm32f10x_hd.s中默认的Heap_Size = 0x200 只有512B，改为0xc00 即3KB即可
@@ -218,7 +221,7 @@ void key_task(void *pvParameters)
 			goto sim800c_boot_label;	 	//gsm_disconnect_var初值为0，若变为1意味断开连接，则要跳转到sim800c_boot_label设置处重新连接服务器
 		}
 		task3_num++;	//任务1执行次数加1 注意task3_num3加到255的时候会清零
-		printf("任务3已经执行：%d次\r\n",task3_num);
+		printf("任务KEY已经执行：%d次\r\n",task3_num);
 		vTaskDelay(2000); 
 		if(send_trash_enable)
 		{
