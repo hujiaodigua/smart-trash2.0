@@ -67,9 +67,12 @@ void task2_task(void *pvParameters);
 #define GapValue 104.8
 #define ABS(v) (v > 0 ? v : -v)
 
-u8 send_enable = 0;	//该值为0时，意味sim800c没有连接上服务器，不能在有垃圾时发送垃圾重量到服务器
+#define TRUE 1
+#define FALSE 0
 
-u8 send_trash_enable = 0; 
+u8 send_enable = FALSE;	//该值为FALSE时，意味sim800c没有连接上服务器，不能在有垃圾时发送垃圾重量到服务器
+
+u8 send_trash_enable = FALSE; 
 
 float Weight_Shiwu = 0;
 float Weight_Send = 0;
@@ -102,13 +105,6 @@ int main(void)
 	
 	Timer_SRD_Init(5000,7199);
 	Wave_SRD_Init();
-	
-//    POINT_COLOR = RED;
-//	LCD_ShowString(30,10,200,16,16,"ATK STM32F103/407");	
-//	LCD_ShowString(30,30,200,16,16,"FreeRTOS Examp 6-3");
-//	LCD_ShowString(30,50,200,16,16,"Task Susp and Resum");
-//	LCD_ShowString(30,70,200,16,16,"ATOM@ALIENTEK");
-//	LCD_ShowString(30,90,200,16,16,"2016/11/25");
 	
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
@@ -182,13 +178,13 @@ void key_task(void *pvParameters)
 	
 	if(sim800c_gsminfo_show()) 														//返回值1意味检查运营商和信号强度成功，因为设置GPRS透传后
 	{																											//经过串口2的任何数据都被当作GPRS数据发送给远端服务器，除非退出透传模式，所以把这个检测暂时放在这里，本来是应该放在循环中多次检测的
-		sim_ready = 1;					//意味着sim卡可以发送数据了
-	}else sim_ready = 0;			//否则sim卡不能发送数据
+		sim_ready = TRUE;					//意味着sim卡可以发送数据了
+	}else sim_ready = FALSE;			//否则sim卡不能发送数据
 	
 	if(sim800c_gsm_config())  //返回值1意味设置GPRS透传成功
 	{
 		printf("sim800c set ok\r\n");
-		send_enable = 1;				//发送标记变量置1，允许有垃圾时发送垃圾重量到服务器
+		send_enable = TRUE;				//发送标记变量置1，允许有垃圾时发送垃圾重量到服务器
 	}else
 	{
 		goto sim800c_boot_label;
@@ -215,9 +211,9 @@ void key_task(void *pvParameters)
 	
 	while(1)
 	{
-		if(gsm_disconnect_var == 1) 	//每次循环开始前检查这个变量
+		if(gsm_disconnect_var == TRUE) 	//每次循环开始前检查这个变量是否为真
 		{
-			gsm_disconnect_var = 0;
+			gsm_disconnect_var = FALSE;
 			goto sim800c_boot_label;	 	//gsm_disconnect_var初值为0，若变为1意味断开连接，则要跳转到sim800c_boot_label设置处重新连接服务器
 		}
 		task3_num++;	//任务1执行次数加1 注意task3_num3加到255的时候会清零
@@ -225,13 +221,13 @@ void key_task(void *pvParameters)
 		vTaskDelay(2000); 
 		if(send_trash_enable)
 		{
-			json_object_set(root, "weight", json_integer(Weight_Send));
+			json_object_set(root, "weight", json_integer(Weight_Send)); //发送的一直都是称重后先保存在本地的重量数据
 			out = json_dumps(root, JSON_ENCODE_ANY);
 //			printf("out:%s\r\n", out);
 			sim800c_send_cmd((u8*)out,(u8*)out,100);
 //			free(root);
 			free(out);
-			send_trash_enable = 0;
+			send_trash_enable = FALSE;
 		}else
 	  {
 			
@@ -243,50 +239,6 @@ void key_task(void *pvParameters)
 //			free(root);free(out);
 //			sim800c_send_cmd("{\"upv\": 1,\"type\": 1,\"uuid\": 12,\"type\": 1,\"major\": 12, \"major\": 32, \"info\": 1,\"beat\": 0,}"," ",100);
     }
-			
-//		timex = sim800c_send_cmd("ABCDEFG","ABCDEFG",100);    //发送ABCDEFG给服务器测试通信
-		
-/*		sim_at_response(1);//检查GSM模块发送过来的数据,及时上传给电脑
-		
-		vTaskDelay(10);
-		if(sim800c_gsminfo_show()) //返回值1意味检查成功
-		{
-			sim_ready = 1;					//意味着sim卡可以发送数据了
-		}else sim_ready = 0;			//否则sim卡不能发送数据
-
-		if(sim_ready)//SIM卡就绪.
-		{
-			
-		}
-*/
-
-		
-//		if(timex==0)		//2.5秒左右更新一次
-//			if(sim800c_gsminfo_show(40,225)==0)sim_ready=1;
-//			else sim_ready=0;	
-		
-//		key=KEY_Scan(0);
-//		switch(key)
-//		{
-//			case WKUP_PRES:
-//				statflag=!statflag;
-//				if(statflag==1)
-//				{
-//					vTaskSuspend(Task1Task_Handler);//挂起任务
-//					printf("挂起任务1的运行!\r\n");
-//				}
-//				else if(statflag==0)
-//				{
-//					vTaskResume(Task1Task_Handler);	//恢复任务1
-//					printf("恢复任务1的运行!\r\n");
-//				}		
-//				break;
-////			case KEY1_PRES:
-////				vTaskSuspend(Task2Task_Handler);//挂起任务2
-////				printf("挂起任务2的运行!\r\n");
-////				break;
-//		}
-//		vTaskDelay(10);			//延时10ms 
 	}
 }
 
@@ -302,50 +254,10 @@ void task1_task(void *pvParameters)
 //	json_t *root;
 //  char *Uplink_data; 
 	
-//	POINT_COLOR = BLACK;
-//	
-//	LCD_DrawRectangle(5,110,115,314); 	//画一个矩形	
-//	LCD_DrawLine(5,130,115,130);		//画线
-//	POINT_COLOR = BLUE;
-//	LCD_ShowString(6,111,110,16,16,"Task1 Run:000");
-
 	while(1)
 	{	
 		if(Weight_Shiwu > 200)	//真的有垃圾执行处理函数
 		{
-			
-//			//立即执行处理函数
-//			if(key_wakeup == 1) 	//WKUP按键被按下意味投放者确认自己垃圾投放完毕 查询响应速度太慢绝对不行，必须写成全局中断
-//			{
-//				key_wakeup = 0;
-//				//vTaskDelay(1000);//等1秒确认放上的是垃圾 
-//				if(JudegTrash(Weight_Shiwu))
-//				{
-//					send_trash_enable = 1; //允许key里发送重量数据
-//					Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
-//	//			sprintf((char*)Weight_Trash,"%f",Weight_Shiwu);
-//	//			sim800c_send_cmd(Weight_Trash,Weight_Trash,100);
-
-//	// 关于发送json的如下代码，当执行json_dumps函数后，将引起某个机智然后挂起所有任务，无论json_dumps函数放在哪里，只要被执行
-//	// 但是放到优先级为1的key任务里却可以执行			
-//	//			root = json_pack("{sisisisisisisi}", 	//startup_stm32f10x_hd.s中默认的Heap_Size = 0x200 只有512B，改为0xc00 即3KB即可
-//	//																		 "upv",    1,
-//	//																		 "type",   0,
-//	//																		 "uuid",   12,
-//	//																		 "major", 12,
-//	//																		 "check", 32,
-//	//																		 "info",	 1,
-//	//																		 "xx",		 (uint32_t)Weight_Shiwu  );
-//	//			Uplink_data = json_dumps(root, JSON_ENCODE_ANY);
-//	//			printf("out:%s\r\n", Uplink_data);
-//	//			free(root);free(Uplink_data);
-//				
-//					printf("挂起任务1的运行!\r\n");
-//					printf("Weight_Shiwu:%f\r\n",Weight_Send);
-//					vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
-//					Weight_Shiwu = 0;
-//				}
-//			}
 			if(key_wakeup == 0) //WKUP按键没有被按下意味投放者忘记确认自己垃圾投放完毕
 			{
 				printf("任务函数1中key_wakeup值：%d\r\n",key_wakeup);
@@ -353,10 +265,10 @@ void task1_task(void *pvParameters)
 					vTaskDelay(1000);//等1秒确认放上的是垃圾 
 					if(JudegTrash(Weight_Shiwu))
 					{
-						send_trash_enable = 1; //允许key里发送重量数据
+						send_trash_enable = TRUE; //允许key里发送重量数据
 						Weight_Send = Weight_Shiwu; //有垃圾了，就把垃圾的重量保存起来,因为测重任务不停止，所以两个变量就需要区分
 						printf("挂起任务1的运行!\r\n");
-						printf("Weight_Shiwu:%f\r\n",Weight_Send);
+						printf("Weight_Send:%f\r\n",Weight_Send);
 						vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
 						Weight_Shiwu = 0;
 					}
@@ -369,15 +281,8 @@ void task1_task(void *pvParameters)
 //			printf("挂起任务2的运行!\r\n");
 //		}
 		
-		
-		
-		
 		task1_num++;	//任务执1行次数加1 注意task1_num1加到255的时候会清零！！
-//		LED0=!LED0;
-//		printf("任务1已经执行：%d次\r\n",task1_num);
-//		LCD_Fill(6,131,114,313,lcd_discolor[task1_num%14]); //填充区域
-//		LCD_ShowxNum(86,111,task1_num,3,16,0x80);	//显示任务执行次数
-        vTaskDelay(10);                           //延时0.01秒
+    vTaskDelay(10);                           //延时0.01秒
 	}
 }
 
@@ -407,14 +312,6 @@ void task2_task(void *pvParameters)
 		delay_ms(5);
 	}
 		
-
-//	POINT_COLOR = BLACK;
-
-//	LCD_DrawRectangle(125,110,234,314); //画一个矩形	
-//	LCD_DrawLine(125,130,234,130);		//画线
-//	POINT_COLOR = BLUE;
-//	LCD_ShowString(126,111,110,16,16,"Task2 Run:000");
-		
 	while(1)
 	{
 			Wave_SRD_Strat();
@@ -437,7 +334,7 @@ void task2_task(void *pvParameters)
 //		if(json_object_clear(root_down) == 0)
 //		{printf("clear json_object");free(root_down);}
 		//接收服务器返回值
-		if(send_enable == 1)
+		if(send_enable == TRUE)
 		{
 			sim_touchuan_recv(1);
 		}
@@ -450,13 +347,7 @@ void task2_task(void *pvParameters)
 		Weight_Shiwu = (ad_val1-ad_val0)/GapValue;
 //		printf("Weight_Shiwu: %f\r",Weight_Shiwu);
 		
-		
-		
 		task2_num++;	//任务2执行次数加1 注意task1_num2加到255的时候会清零！！
-//        LED1=!LED1;
-//		printf("任务2已经执行：%d次\r\n",task2_num);
-//		LCD_ShowxNum(206,111,task2_num,3,16,0x80);  //显示任务执行次数
-//		LCD_Fill(126,131,233,313,lcd_discolor[13-task2_num%14]); //填充区域
         vTaskDelay(100);                           //延时0.1s
 	}
 }

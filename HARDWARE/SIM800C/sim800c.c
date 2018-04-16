@@ -217,7 +217,7 @@ u8 sim800c_gsm_config(void)
 		printf("设置本地端口为2000\r\n");
 	}else {res = 0;}
 	
-	if(sim800c_send_cmd("AT+CIPSTART=\"TCP\",\"120.78.144.55\",\"10006\"","OK",200)==0)		//连接服务器，sim800c使用的是串口2
+	if(sim800c_send_cmd("AT+CIPSTART=\"TCP\",\"120.78.144.55\",\"20006\"","OK",200)==0)		//连接服务器，sim800c使用的是串口2
 	{																																										 	//GPRS设置为透传模式后，所有的数据将通过串口2直接发送到服务器
 		printf("连接服务器\r\n");																														//除非发送+++返回ok则退出透传模式
 	}else {res = 0;}	
