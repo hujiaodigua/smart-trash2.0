@@ -79,6 +79,7 @@ float Weight_Send = 0;
 
 extern u8 key_wakeup;
 extern int gsm_disconnect_var;
+extern float Distance_s;
 
 ////LCD刷屏时使用的颜色
 //int lcd_discolor[14]={	WHITE, BLACK, BLUE,  BRED,      
@@ -151,6 +152,7 @@ void key_task(void *pvParameters)
 	//u8 key,statflag=0;
 	u8 task3_num=0;
 	u8 key=0; 							//这个变量是做什么用的？
+	u8 count_heart = 0;
 	
 //	u8 timex=0;
 	u8 sim_ready=0;
@@ -230,12 +232,18 @@ void key_task(void *pvParameters)
 			send_trash_enable = FALSE;
 		}else
 	  {
-			
-			if(root_heartbeat == NULL)
-				sim800c_send_cmd("root_heartbeat is null","",100);
-			if(out_heartbeat == NULL)
-				sim800c_send_cmd("out_heartbeat is null","",100);
-			sim800c_send_cmd(out_heartbeat,"",100);
+			count_heart++;
+			if(count_heart == 20)
+			{
+				count_heart = 0;
+				printf("发送一次心跳包\r\n");
+				printf("Distance:%f cm\r\n",Distance_s);
+				if(root_heartbeat == NULL)
+					sim800c_send_cmd("root_heartbeat is null","",100);
+				if(out_heartbeat == NULL)
+					sim800c_send_cmd("out_heartbeat is null","",100);
+					sim800c_send_cmd(out_heartbeat,"",100);
+			}
 //			free(root);free(out);
 //			sim800c_send_cmd("{\"upv\": 1,\"type\": 1,\"uuid\": 12,\"type\": 1,\"major\": 12, \"major\": 32, \"info\": 1,\"beat\": 0,}"," ",100);
     }

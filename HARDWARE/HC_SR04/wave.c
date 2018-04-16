@@ -72,7 +72,7 @@ void EXTI2_IRQHandler(void)
 		if(Distance > 2 )//测距和设置其实没有什么问题，就是这里的测量方式有问题
 		{
 			Distance_s = Distance;
-			printf("Distance:%f cm\r\n",Distance);
+			//printf("Distance:%f cm\r\n",Distance);
 		}
 		if(Distance <= 2)	//意味回波没有发生变化，距离不变
 		{
