@@ -81,6 +81,12 @@ extern u8 key_wakeup;
 extern int gsm_disconnect_var;
 extern float Distance_s;
 
+char AcPrintInit[] = {0x1b,0x40,	//初始化
+											0x1c,0x26,	//汉字模式
+											0x1b,0x0e,	//倍宽
+											0x1b,0x14		//取消倍宽
+											};
+
 ////LCD刷屏时使用的颜色
 //int lcd_discolor[14]={	WHITE, BLACK, BLUE,  BRED,      
 //						GRED,  GBLUE, RED,   MAGENTA,       	 
@@ -99,6 +105,8 @@ int main(void)
 //	LCD_Init();							//初始化LCD
 	
 	USART2_Init(115200);	         //初始化串口2--串口2连接STM800C
+	
+	USART3_InitConfig(9600);			 //初始化串口3--串口3连接热敏打印机
 	
 	ADInit();
 	ADInit_Left();
@@ -279,6 +287,14 @@ void task1_task(void *pvParameters)
 						printf("Weight_Send:%f\r\n",Weight_Send);
 						vTaskSuspend(Task1Task_Handler);//挂起任务1，从而暂停检测垃圾，当电机逻辑执行完毕后，在那里恢复任务1
 						Weight_Shiwu = 0;
+						
+						//热敏打印机测试程序
+						print_chs(AcPrintInit);
+						print_chs("打印机测试程序");
+						print_chs("print test");
+						print_new_line();
+						print_chs("打印机测试程序");
+						print_new_line();
 					}
 			}
 		}
@@ -316,7 +332,7 @@ void task2_task(void *pvParameters)
 	for(i=0;i<10;i++)
 	{
 		
-		ad_val0 = HX711_Read() + HX711_Read_Left() + HX711_Read_Right();
+		ad_val0 =  HX711_Read();//HX711_Read_Left() + HX711_Read_Right();//+HX711_Read();
 		delay_ms(5);
 	}
 		
@@ -346,7 +362,7 @@ void task2_task(void *pvParameters)
 		{
 			sim_touchuan_recv(1);
 		}
-		ad_val1 = HX711_Read() + HX711_Read_Left() + HX711_Read_Right();
+		ad_val1 = HX711_Read() ;//HX711_Read_Left() + HX711_Read_Right();//HX711_Read() +;
 		
 //		if(ABS(ad_val1-ad_val0) < 800) //自动标定0
 //		{
